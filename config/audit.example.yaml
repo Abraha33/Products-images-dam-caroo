@@ -1,0 +1,63 @@
+audit:
+  name: envax-products-images-audit
+  read_only_sources: true
+
+paths:
+  # Reemplazar localmente. No subir rutas privadas ni el banco real a GitHub.
+  source_images: "D:/RUTA/IMAGENES"
+  master_catalog: "D:/RUTA/CATALOGO/catalogo.xlsx"
+  output_dir: "D:/RUTA/SALIDA/audit-output"
+
+input:
+  recursive: true
+  allowed_extensions:
+    - .jpg
+    - .jpeg
+    - .png
+    - .webp
+    - .tif
+    - .tiff
+    - .bmp
+    - .heic
+    - .heif
+
+identity:
+  # La agrupación real se ajustará después de inspeccionar la estructura local.
+  grouping_mode: folder
+  preserve_original_filename: true
+  catalog_is_source_of_truth: true
+
+technical_audit:
+  inventory: true
+  exif: true
+  sha256: true
+  perceptual_hash: true
+  detect_corrupt_files: true
+
+visual_audit:
+  # Se habilitará después de validar la capa determinista.
+  enabled: false
+  quality_metrics: false
+  background_difficulty: false
+  view_diversity: false
+  probable_view_classification: false
+  sku_mix_detection: false
+
+safety:
+  write_inside_source_tree: false
+  delete_sources: false
+  rename_sources: false
+  move_sources: false
+  overwrite_sources: false
+  fail_if_output_is_inside_source: true
+
+reporting:
+  write_inventory_csv: true
+  write_products_summary_csv: true
+  write_duplicates_exact_csv: true
+  write_duplicates_visual_csv: true
+  write_quality_flags_csv: true
+  write_coverage_by_product_csv: true
+  write_summary_markdown: true
+  write_effective_config_json: true
+  write_error_log: true
