@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Secrets / local configuration
+.env
+.env.*
+!.env.example
+
+# Local source data: NEVER commit the real catalog or image bank
+inputs/
+private/
+data/raw/
+source_images/
+
+# Product images and heavy visual assets are local by default
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.tif
+*.tiff
+*.bmp
+*.gif
+*.heic
+*.heif
+
+# Model weights / large generated artifacts
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+models/
+
+# Audit outputs are generated locally and must not pollute Git history
+audit-output/
+reports/*
+!reports/README.md
+
+# Logs / temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+tmp/
+temp/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Tests may later include deliberately curated tiny fixtures
+!tests/fixtures/**
